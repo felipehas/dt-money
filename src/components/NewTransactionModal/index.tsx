@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Modal from "react-modal";
 import closeImg from "../../assets/close.svg";
-import { Container } from "./styles";
+import incomeImg from "../../assets/income.svg";
+import outcomeImg from "../../assets/outcome.svg";
+import { Container, TransactionTypeContainer, RadioBox } from "./styles";
 
 interface INewTransactionModalProps {
   isOpen: boolean;
@@ -11,6 +14,8 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: INewTransactionModalProps) {
+  const [type, setType] = useState("deposit");
+
   return (
     <Modal
       isOpen={isOpen}
@@ -31,6 +36,34 @@ export function NewTransactionModal({
 
         <input placeholder="Título" />
         <input type="number" placeholder="Valor" />
+
+        <TransactionTypeContainer>
+          <RadioBox
+            type="button"
+            // className={type === "deposit" ? "active" : ""} // poderia ser assim, mas não é bom usando StyledComponents
+            isActive={type ==="deposit"}
+            activeColor="green"
+            onClick={() => {
+              setType("deposit");
+            }}
+          >
+            <img src={incomeImg} alt="Entrada" />
+            <span>Entrada</span>
+          </RadioBox>
+
+          <RadioBox
+            type="button"
+            isActive={type ==="withdraw"}
+            activeColor="red"
+            onClick={() => {
+              setType("withdraw");
+            }}
+          >
+            <img src={outcomeImg} alt="Saída" />
+            <span>Saída</span>
+          </RadioBox>
+        </TransactionTypeContainer>
+
         <input placeholder="Categoria" />
         <button type="submit">Cadastrar</button>
       </Container>
