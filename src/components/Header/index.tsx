@@ -5,12 +5,12 @@ interface IHeaderProps {
   onOpenNewTransactionModal: () => void;
 }
 
-export function Header({ onOpenNewTransactionModal: onOpenNewTransctionModal }: IHeaderProps) {
+export function Header({ onOpenNewTransactionModal }: IHeaderProps) {
   return (
     <Container>
       <Content>
         <img src={logoImg} alt="dt money" />
-        <button type="button" onClick={onOpenNewTransctionModal}>
+        <button type="button" onClick={onOpenNewTransactionModal}>
           Nova transação
         </button>
       </Content>
